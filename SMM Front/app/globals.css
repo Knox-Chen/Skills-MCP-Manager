@@ -1,0 +1,191 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* 黑色科技感 - 竞品分析 */
+:root {
+  --background: oklch(0.06 0.004 260);
+  --foreground: oklch(0.96 0 0);
+  --card: oklch(0.08 0.006 260);
+  --card-foreground: oklch(0.96 0 0);
+  --popover: oklch(0.08 0.006 260);
+  --popover-foreground: oklch(0.96 0 0);
+  --primary: oklch(0.65 0.12 200);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.14 0.01 260);
+  --secondary-foreground: oklch(0.9 0 0);
+  --muted: oklch(0.16 0.008 260);
+  --muted-foreground: oklch(0.55 0 0);
+  --accent: oklch(0.55 0.15 175);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.2 0.01 260);
+  --input: oklch(0.12 0.008 260);
+  --ring: oklch(0.5 0.12 200);
+  --chart-1: oklch(0.6 0.12 200);
+  --chart-2: oklch(0.55 0.15 175);
+  --chart-3: oklch(0.6 0.15 50);
+  --chart-4: oklch(0.65 0.18 320);
+  --chart-5: oklch(0.7 0.12 200);
+  --radius: 0.5rem;
+  --sidebar: oklch(0.07 0.005 260);
+  --sidebar-foreground: oklch(0.96 0 0);
+  --sidebar-primary: oklch(0.65 0.12 200);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.14 0.01 260);
+  --sidebar-accent-foreground: oklch(0.9 0 0);
+  --sidebar-border: oklch(0.2 0.01 260);
+  --sidebar-ring: oklch(0.5 0.12 200);
+
+  --glass: oklch(0.1 0.008 260 / 0.7);
+  --glass-border: oklch(0.28 0.02 260 / 0.4);
+  --glow: oklch(0.5 0.12 200 / 0.25);
+}
+
+.dark {
+  --background: oklch(0.06 0.004 260);
+  --foreground: oklch(0.96 0 0);
+  --card: oklch(0.08 0.006 260);
+  --card-foreground: oklch(0.96 0 0);
+  --popover: oklch(0.08 0.006 260);
+  --popover-foreground: oklch(0.96 0 0);
+  --primary: oklch(0.65 0.12 200);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.14 0.01 260);
+  --secondary-foreground: oklch(0.9 0 0);
+  --muted: oklch(0.16 0.008 260);
+  --muted-foreground: oklch(0.55 0 0);
+  --accent: oklch(0.55 0.15 175);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.2 0.01 260);
+  --input: oklch(0.12 0.008 260);
+  --ring: oklch(0.5 0.12 200);
+  --sidebar: oklch(0.07 0.005 260);
+  --sidebar-foreground: oklch(0.96 0 0);
+  --sidebar-primary: oklch(0.65 0.12 200);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.14 0.01 260);
+  --sidebar-accent-foreground: oklch(0.9 0 0);
+  --sidebar-border: oklch(0.2 0.01 260);
+  --sidebar-ring: oklch(0.5 0.12 200);
+}
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Glassmorphism utilities */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, oklch(0.1 0.008 260 / 0.85) 0%, oklch(0.07 0.005 260 / 0.7) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+}
+
+.glow-primary {
+  box-shadow: 0 0 40px var(--glow);
+}
+
+/* Terminal styling */
+.terminal-text {
+  font-family: var(--font-mono);
+  line-height: 1.6;
+}
+
+/* Animated gradient background */
+.gradient-bg {
+  background: radial-gradient(ellipse 70% 40% at 50% -10%, oklch(0.35 0.08 200 / 0.2), transparent 60%);
+}
+
+.grid-pattern {
+  background-image:
+    linear-gradient(oklch(0.18 0.01 260 / 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.18 0.01 260 / 0.4) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* 科技感：极弱扫描线 */
+.scanline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    oklch(0 0 0 / 0.03) 2px,
+    oklch(0 0 0 / 0.03) 4px
+  );
+  pointer-events: none;
+}
+
+/* 分析结果 Markdown 样式 */
+.markdown-result h1 { font-size: 1.35rem; font-weight: 700; margin: 1em 0 0.5em; color: var(--foreground); }
+.markdown-result h2 { font-size: 1.15rem; font-weight: 600; margin: 0.9em 0 0.4em; color: var(--foreground); }
+.markdown-result h3 { font-size: 1rem; font-weight: 600; margin: 0.8em 0 0.35em; color: var(--foreground); }
+.markdown-result p { margin: 0.5em 0; line-height: 1.7; color: var(--muted-foreground); }
+.markdown-result ul, .markdown-result ol { margin: 0.5em 0; padding-left: 1.25rem; color: var(--muted-foreground); }
+.markdown-result li { margin: 0.25em 0; }
+.markdown-result code { background: var(--muted); padding: 0.15em 0.35em; border-radius: 4px; font-size: 0.9em; }
+.markdown-result pre { background: var(--secondary); padding: 0.75rem 1rem; border-radius: var(--radius); overflow-x: auto; margin: 0.75em 0; }
+.markdown-result pre code { background: none; padding: 0; }
+.markdown-result strong { color: var(--foreground); font-weight: 600; }
+.markdown-result a { color: var(--primary); text-underline-offset: 2px; }
+.markdown-result blockquote { border-left: 3px solid var(--border); padding-left: 1rem; margin: 0.75em 0; color: var(--muted-foreground); }
