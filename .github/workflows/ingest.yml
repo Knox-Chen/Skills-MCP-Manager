@@ -2,13 +2,17 @@ name: MCP & Skills Ingest
 
 on:
   schedule:
-    # 每 12 小时跑一次（UTC 时间）
     - cron: "0 */12 * * *"
-  workflow_dispatch: {}  # 手动触发也可以
+  workflow_dispatch: {}
 
 jobs:
   ingest:
     runs-on: ubuntu-latest
+
+    # 关键：所有命令都在 "SMM back" 目录下执行
+    defaults:
+      run:
+        working-directory: "SMM back"
 
     env:
       DOUBAO_API_KEY: ${{ secrets.DOUBAO_API_KEY }}
