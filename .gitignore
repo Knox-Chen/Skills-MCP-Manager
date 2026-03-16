@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+.env
+
+# 运行期数据
+analytics_v1.jsonl
+
+# 前端依赖与构建产物
+frontend/node_modules/
+frontend/.next/
+frontend/.turbo/
+frontend/.cache/
+frontend/.env.local
