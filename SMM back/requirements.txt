@@ -1,33 +1,12 @@
-# MCP/Skills Smart Recommender - 数据管道依赖
-# 推荐 Python 3.10 / 3.11 / 3.12（避免 3.14，Windows 上 PyTorch 可能加载失败）
+# MCP/Skills 后端 - Railway 瘦身版（无 torch/sentence-transformers，镜像 <4GB）
+# 仅用 fastembed 做向量化，与 Pinecone 384 维索引兼容
 
-# 网络请求
 requests>=2.28.0
-
-# 环境变量
 python-dotenv>=1.0.0
-
-# 本地 Embedding 模型 (384 维)。sentence-transformers 需 PyTorch；若 Windows 下 DLL 报错可仅用 fastembed
-sentence-transformers>=2.2.0
 fastembed>=0.4.0
-
-# Pinecone 云端向量库 (PyPI 包名: pinecone)
 pinecone>=5.0.0
-
-# 推荐/重排：HyDE 与智能重排（OpenAI 或火山兼容）
 openai>=1.0.0
-
-# Streamlit 前端
-streamlit>=1.28.0
-
-# FastAPI 与埋点 API
 fastapi>=0.104.0
 uvicorn[standard]>=0.24.0
-
-# 测试（按需）
 pytest>=7.0.0
 httpx>=0.25.0
-
-# sentence-transformers 依赖 (通常会自动安装，若有冲突可取消注释)
-# torch>=2.0.0
-# transformers>=4.30.0
