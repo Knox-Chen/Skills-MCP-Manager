@@ -6,4 +6,5 @@ from api import app
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", "8000"))
+    print(f"[run] PORT env={os.environ.get('PORT', '(not set)')}, binding 0.0.0.0:{port}", flush=True)
     uvicorn.run(app, host="0.0.0.0", port=port)
