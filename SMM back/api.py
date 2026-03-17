@@ -8,7 +8,6 @@ MCP/Skills 架构师 Agent - FastAPI 接口
 from __future__ import annotations
 
 import sys
-import threading
 import traceback
 import uuid
 from pathlib import Path
@@ -41,9 +40,8 @@ app = FastAPI(
 
 @app.on_event("startup")
 def startup():
-    """启动时后台预加载 embedding 与 Pinecone，首次请求即可复用，缩短 E2E。"""
-    t = threading.Thread(target=_warmup, daemon=True)
-    t.start()
+    """启动时同步预加载 embedding 与 Pinecone，避免首请求超时（Railway 等云环境）。"""
+    _warmup()
 
 # 允许前端（Vite/Next 等）跨域访问
 app.add_middleware(
