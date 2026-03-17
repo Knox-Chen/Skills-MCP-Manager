@@ -132,9 +132,12 @@ def api_feedback(body: FeedbackRequest, background_tasks: BackgroundTasks):
     return {"ok": True, "request_id": body.request_id}
 
 
-@app.get("/health")
-def health():
+@app.get("/")
+def root():
+    """根路径，供 Railway 等平台健康检查 GET / 使用。"""
     return {"status": "ok"}
+
+
 
 
 if __name__ == "__main__":
