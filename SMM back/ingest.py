@@ -92,7 +92,28 @@ MCP_REGISTRY_URL = "https://registry.modelcontextprotocol.io/v0.1/servers"
 SKILLS_API_URL = "https://openagentskill.com/api/agent/skills"
 
 
+# fastembed 下 384 维模型（与 all-MiniLM-L6-v2 同维，Pinecone 索引兼容）
+FASTEMBED_MODEL_384 = "BAAI/bge-small-en-v1.5"
+
+
 def _load_embedding_backend() -> tuple[Any, Callable[..., list[list[float]]]]:
+    # 优先 fastembed（轻量，Railway 等 4GB 镜像可用）
+    try:
+        from fastembed import TextEmbedding
+        model = TextEmbedding(model_name=FASTEMBED_MODEL_384)
+        def embed_fe(texts: list[str], expected_dim: int) -> list[list[float]]:
+            vecs = list(model.embed(texts))
+            result = [v.tolist() for v in vecs]
+            for i, v in enumerate(result):
+                if len(v) != expected_dim:
+                    raise ValueError(f"维度不匹配: 第 {i} 条向量维度为 {len(v)}，期望 {expected_dim}。")
+            return result
+        return model, embed_fe
+    except ImportError:
+        pass
+    except Exception as e:
+        print(f"fastembed 加载失败，尝试 sentence_transformers: {e}", file=sys.stderr)
+    # 回退到 sentence_transformers（本地/大内存环境）
     try:
         from sentence_transformers import SentenceTransformer
         model = SentenceTransformer(EMBEDDING_MODEL)
@@ -105,27 +126,8 @@ def _load_embedding_backend() -> tuple[Any, Callable[..., list[list[float]]]]:
         return model, embed_st
     except (ImportError, OSError):
         pass
-    try:
-        from fastembed import TextEmbedding
-        model = TextEmbedding(model_name=EMBEDDING_MODEL)
-        def embed_fe(texts: list[str], expected_dim: int) -> list[list[float]]:
-            vecs = list(model.embed(texts))
-            result = [v.tolist() for v in vecs]
-            for i, v in enumerate(result):
-                if len(v) != expected_dim:
-                    raise ValueError(f"维度不匹配: 第 {i} 条向量维度为 {len(v)}，期望 {expected_dim}。")
-            return result
-        return model, embed_fe
-    except ImportError as e:
-        err = str(e).lower()
-        if "dll" in err or "onnxruntime" in err or "pybind" in err:
-            print("错误: 本机无法加载 PyTorch 与 ONNX Runtime。请安装 VC++ 运行库后重试。", file=sys.stderr)
-        else:
-            print(f"错误: 无法加载 sentence_transformers，且 fastembed 不可用: {e}", file=sys.stderr)
-        sys.exit(1)
-    except Exception as e:
-        print(f"错误: fastembed 加载失败: {e}", file=sys.stderr)
-        sys.exit(1)
+    print("错误: 请安装 fastembed（pip install fastembed）或 sentence-transformers。", file=sys.stderr)
+    sys.exit(1)
 
 
 def get_env(key: str, default: str | None = None) -> str:
