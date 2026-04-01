@@ -41,10 +41,8 @@ app = FastAPI(
 
 @app.on_event("startup")
 def startup():
-    """启动时后台预加载 embedding 与 Pinecone，首次请求即可复用，缩短 E2E。"""
-    t = threading.Thread(target=_warmup, daemon=True)
-    t.start()
-
+    """后台预加载模型与 Pinecone，避免阻塞启动（Railway 健康检查需快速响应）。"""
+    threading.Thread(target=_warmup, daemon=True).start()
 # 允许前端（Vite/Next 等）跨域访问
 app.add_middleware(
     CORSMiddleware,
@@ -134,11 +132,20 @@ def api_feedback(body: FeedbackRequest, background_tasks: BackgroundTasks):
     return {"ok": True, "request_id": body.request_id}
 
 
+@app.get("/")
+def root():
+    """根路径，供 Railway 等平台健康检查 GET / 使用。"""
+    return {"status": "ok"}
+
+
 @app.get("/health")
 def health():
     return {"status": "ok"}
 
 
+
 if __name__ == "__main__":
+    import os
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.environ.get("PORT", "8000"))
+    uvicorn.run(app, host="0.0.0.0", port=port)
