@@ -7,8 +7,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: '专业竞品分析团队',
-  description: '集成分析规划、竞品搜集、信息整合、数据分析的多 agent 竞品分析团队，专家团 24h 待命',
+  title: 'skill & MCP Manager',
+  description: '描述任务，为Agent推荐适配的skill或MCP\n打造专属于您的专业助手',
   generator: 'v0.app',
   icons: {
     icon: [

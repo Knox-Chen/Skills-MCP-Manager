@@ -77,18 +77,19 @@ export default function App() {
   return (
     <div className="app">
       <header style={{ marginBottom: "2rem" }}>
-        <h1 style={{ fontSize: "1.75rem", fontWeight: 700, margin: 0 }}>MCP/Skills 架构师</h1>
-        <p style={{ color: "#a1a1aa", marginTop: "0.5rem" }}>
-          输入你的 Agent Idea，获取推荐的 MCP/Skill 组合与全栈实现方案
-        </p>
+        <h1 style={{ fontSize: "1.75rem", fontWeight: 700, margin: 0 }}>skill & MCP Manager</h1>
+        <div style={{ color: "#a1a1aa", marginTop: "0.5rem", lineHeight: 1.5 }}>
+          <div>描述任务，为Agent推荐适配的skill或MCP</div>
+          <div>打造专属于您的专业助手</div>
+        </div>
       </header>
 
       <section style={{ marginBottom: "1.5rem" }}>
-        <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: 500 }}>你的 Idea</label>
+        <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: 500 }}>任务描述</label>
         <textarea
           value={idea}
           onChange={(e) => setIdea(e.target.value)}
-          placeholder="例如：我想做一个能自动读取 PDF 论文并总结到 Notion 的 Agent"
+          placeholder="请描述您的意图或希望处理的任务"
           rows={4}
           style={{
             width: "100%",
@@ -222,7 +223,7 @@ export default function App() {
               ))}
             </ul>
 
-            <h3 style={{ fontSize: "1rem", marginBottom: "0.5rem" }}>推荐清单与全栈实现方案</h3>
+            <h3 style={{ fontSize: "1rem", marginBottom: "0.5rem" }}>推荐清单与使用建议</h3>
             <div
               style={{
                 padding: "1rem",

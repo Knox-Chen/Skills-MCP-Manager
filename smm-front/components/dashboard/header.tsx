@@ -11,7 +11,7 @@ export function Header() {
             <BarChart3 className="w-4 h-4 text-foreground" />
           </div>
           <span className="font-semibold text-foreground text-sm tracking-tight">
-            MCP/Skills 架构师
+            skill & MCP Manager
           </span>
         </div>
       </div>

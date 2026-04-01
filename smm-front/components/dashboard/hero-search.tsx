@@ -24,12 +24,14 @@ export function HeroSearch({ onSearch, isProcessing }: HeroSearchProps) {
       <div className="absolute inset-0 gradient-bg pointer-events-none opacity-60" />
 
       <div className="relative max-w-xl mx-auto text-center">
-        <h1 className="text-xl md:text-2xl font-bold text-foreground mb-1.5 tracking-tight text-balance">
-          输入 Idea，获取 MCP/Skill 推荐与全栈方案
-        </h1>
-        <p className="text-xs text-muted-foreground mb-4 max-w-md mx-auto leading-relaxed">
-          基于 HyDE 与双路检索，为您推荐最匹配的 MCP 与 Skill，并生成实施路线图。
-        </p>
+        <div className="mb-4 text-balance">
+          <h1 className="text-xl md:text-2xl font-bold text-foreground tracking-tight">
+            描述任务，为Agent推荐适配的skill或MCP
+          </h1>
+          <p className="text-base md:text-lg font-semibold text-foreground mt-2 tracking-tight">
+            打造专属于您的专业助手
+          </p>
+        </div>
 
         <form onSubmit={handleSubmit} className="relative">
           <div className="glass-card rounded-lg p-1 glow-primary border border-border/60">
@@ -39,7 +41,7 @@ export function HeroSearch({ onSearch, isProcessing }: HeroSearchProps) {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="输入项目想法或技术需求…"
+                placeholder="请描述您的意图或希望处理的任务"
                 className="w-full bg-transparent text-foreground placeholder:text-muted-foreground py-1.5 pl-8 pr-24 focus:outline-none text-sm min-h-[2rem]"
                 disabled={isProcessing}
               />

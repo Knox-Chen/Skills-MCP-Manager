@@ -196,7 +196,7 @@ export default function Dashboard() {
             {hasSearched && roadmapText && (
               <section className="glass-card rounded-xl overflow-hidden">
                 <h2 className="text-lg font-semibold text-foreground px-5 py-4 border-b border-border/50">
-                  全栈实现方案
+                  使用建议
                 </h2>
                 <div
                   className="p-5 text-base text-foreground text-left leading-relaxed whitespace-pre-wrap"
